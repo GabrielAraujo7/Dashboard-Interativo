@@ -1,4 +1,4 @@
-##Funcionalidades e Navegação
+## Funcionalidades e Navegação
 O dashboard foi projetado para ser intuitivo, permitindo que o gestor de frota navegue entre diferentes níveis de detalhamento através da Barra Lateral (Sidebar).
 
 Barra Lateral de Controle
@@ -26,7 +26,7 @@ Exportação de Dados
 Download de Relatórios: Na parte inferior de cada visão, o usuário tem acesso a um botão para exportar a base de dados filtrada e tratada para o formato .csv, pronta para uso em outras ferramentas.
 
 
-##Como Usar
+## Como Usar
 Siga os passos abaixo para replicar o ambiente e rodar o dashboard localmente:
 
 1. Clonar o Repositório
