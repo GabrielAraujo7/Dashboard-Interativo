@@ -11,16 +11,16 @@ st.set_page_config(page_title="Análise de Ociosidade", layout="wide")
 @st.cache_data
 def load_data():
     dfs = [
-        '/home/joaogabriel7/Downloads/Analisys/data/relatorio_semanal_V-1001.xlsx',
-        '/home/joaogabriel7/Downloads/Analisys/data/relatorio_semanal_V-1002.xlsx',
-        '/home/joaogabriel7/Downloads/Analisys/data/relatorio_semanal_V-1003.xlsx',
-        '/home/joaogabriel7/Downloads/Analisys/data/relatorio_semanal_V-1004.xlsx',
-        '/home/joaogabriel7/Downloads/Analisys/data/relatorio_semanal_V-1005.xlsx'
+        'data/relatorio_semanal_V-1001.xlsx',
+        'data/relatorio_semanal_V-1002.xlsx',
+        'data/relatorio_semanal_V-1003.xlsx',
+        'data/relatorio_semanal_V-1004.xlsx',
+        'data/relatorio_semanal_V-1005.xlsx'
     ]
     range_dfs = [pd.read_excel(arq) for arq in dfs]
     df_complex = pd.concat(range_dfs, ignore_index=True)
 
-    df_cerca = pd.read_excel('/home/joaogabriel7/Downloads/Analisys/data/coordenadas_cerca.xlsx')
+    df_cerca = pd.read_excel('data/coordenadas_cerca.xlsx')
 
     lista_coordenadas = list(zip(df_cerca['Longitude'], df_cerca['Latitude']))
     cerca_poligono = Polygon(lista_coordenadas)
@@ -85,14 +85,6 @@ def create_map(df_map, df_cerca, mode='geral', alvo=''):
     return fig
 
 
-def save_consolidated(df, file_path='/home/joaogabriel7/Downloads/Analisys/data/consolidado.csv'):
-    try:
-        df.to_csv(file_path, index=False, encoding='utf-8')
-        return True, file_path
-    except Exception as e:
-        return False, str(e)
-
-
 # Carrega os dados processados
 try:
     df_complex, df_ociosos, df_cerca = load_data()
@@ -104,17 +96,6 @@ except Exception as e:
 st.sidebar.title("Navegação")
 st.sidebar.markdown("Escolha o painel de visualização:")
 menu = st.sidebar.radio("", ["Visão Motoristas", "Visão Veículos", "Visão Geral"])
-
-with st.sidebar.expander("Dados Consolidados", expanded=True):
-    st.write("Crie e exporte a base consolidada de todos os relatórios")
-    csv_bytes = df_complex.to_csv(index=False, encoding='utf-8').encode('utf-8')
-    st.download_button("Baixar base consolidada (CSV)", csv_bytes, "consolidado.csv", "text/csv")
-    if st.button("Salvar consolidados no servidor"):
-        ok, msg = save_consolidated(df_complex)
-        if ok:
-            st.success(f"Consolidado salvo em: {msg}")
-        else:
-            st.error(f"Erro ao salvar consolidado: {msg}")
 
 if menu == "Visão Motoristas":
     st.title("Dashboard: Ociosidade por Motorista")
