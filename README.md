@@ -28,7 +28,7 @@ O sistema consolida automaticamente as 6 bases de dados em um único arquivo lim
 
 Útil para auditorias externas ou integrações com outras ferramentas de BI (como Qlik Sense ou Power BI).
 
-🛠️ Como rodar o projeto
+Como rodar o projeto
 Se você deseja executar este dashboard localmente:
 
 Prepare o ambiente:
@@ -44,7 +44,7 @@ streamlit run src/dashboard.py
 Acesse no navegador:
 O Streamlit abrirá automaticamente o endereço http://localhost:8501.
 
-📁 Estrutura Técnica
+Estrutura Técnica
 data/: Repositório das bases Excel (Fontes de dados).
 
 src/dashboard.py: O "cérebro" da aplicação e interface.
