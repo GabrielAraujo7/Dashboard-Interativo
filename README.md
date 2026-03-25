@@ -1,3 +1,30 @@
+Funcionalidades e Navegação
+O dashboard foi projetado para ser intuitivo, permitindo que o gestor de frota navegue entre diferentes níveis de detalhamento através da Barra Lateral (Sidebar).
+
+Barra Lateral de Controle
+Seletor de Visão: Alterna instantaneamente todo o dashboard entre:
+
+Visão Geral: Métricas macro de toda a operação.
+
+Visão Motoristas: Foco em performance individual e comportamento.
+
+Visão Veículos: Status de utilização e ociosidade por placa.
+
+Filtros Dinâmicos: Permite filtrar os dados por data, turno ou motorista específico, atualizando todos os KPIs e gráficos simultaneamente.
+
+Painel de Indicadores (KPIs)
+Cartões de Resumo: Visualização rápida do total de registros, porcentagem de ociosidade e total de horas dentro/fora da cerca (Geofencing).
+
+Status em Tempo Real: Indicadores de cores que destacam pontos de atenção na frota.
+
+Análise Geoespacial e Temporal
+Mapa de Concentração: Exibição do polígono da cerca com a plotagem dos pontos de ociosidade, facilitando a identificação visual de onde os veículos param.
+
+Gráficos de Tendência: Histogramas e gráficos de linha que mostram a Evolução Diária e os Picos por Hora, ajudando a identificar gargalos em horários específicos do dia.
+
+Exportação de Dados
+Download de Relatórios: Na parte inferior de cada visão, o usuário tem acesso a um botão para exportar a base de dados filtrada e tratada para o formato .csv, pronta para uso em outras ferramentas.
+
 Como Usar
 Siga os passos abaixo para replicar o ambiente e rodar o dashboard localmente:
 
