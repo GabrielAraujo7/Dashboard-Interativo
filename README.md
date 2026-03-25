@@ -56,5 +56,5 @@ Agora, basta iniciar o servidor do Streamlit:
 
 Após o comando, o dashboard abrirá automaticamente no seu navegador no endereço http://localhost:8501.
 
-Deploy (Streamlit Cloud)
-O projeto também está configurado para deploy contínuo. Link do App: ### *https://dashboard-interativo-4lwtqmtjptpjg2dvrdezmy.streamlit.app/.*
+## Deploy (Streamlit Cloud)
+O projeto também está configurado para deploy contínuo. Link do App: *https://dashboard-interativo-4lwtqmtjptpjg2dvrdezmy.streamlit.app/.*
