@@ -1,82 +1,54 @@
-# Dashboard de Ociosidade
+Dashboard de Análise de Ociosidade (Streamlit)
+Este projeto é uma solução de inteligência logística desenvolvida para monitorar a eficiência de frotas. Ele transforma dados brutos de telemetria e coordenadas em indicadores visuais para facilitar a tomada de decisão sobre ociosidade e geofencing.
 
-Este projeto apresenta um dashboard Streamlit com 3 visões:
-- Visão Motoristas (apenas registros dentro da cerca)
-- Visão Veículos (apenas registros dentro da cerca)
-- Visão Geral (todos os registros, com destaque dentro/fora da cerca)
+Como Visualizar e Usar o Dashboard
+Para explorar as análises, utilize o menu lateral (sidebar) para navegar entre as três visões principais:
 
-O dashboard também gera base consolidada de dados e permite download CSV.
+1. Visão Motoristas (Foco em Operação)
+O que você vê: Uma lista filtrada apenas com os registros que ocorreram dentro da cerca virtual.
 
----
+Como usar: Ideal para identificar quais motoristas estão passando mais tempo em zonas de carga/descarga ou áreas de espera específicas.
 
-## Pré-requisitos
+2. Visão Veículos (Foco em Ativos)
+O que você vê: Performance individualizada por unidade (placa/veículo), considerando apenas dados dentro da geocerca.
 
-- Python 3.11+ (o ambiente aqui usa 3.13)
-- `pip` instalado
+Como usar: Utilize os filtros para analisar o comportamento de um veículo específico e comparar sua ociosidade em relação à média da frota.
 
-## Instalação
+3. Visão Geral (Panorama Completo)
+O que você vê: Um mapa interativo e gráficos que mostram todos os registros capturados.
 
-```bash
-cd /home/joaogabriel7/Downloads/Analisys
+Destaque Visual: Os pontos são diferenciados por cores para separar o que está "Dentro" vs. "Fora" da cerca.
+
+Como usar: Tenha uma visão macro do deslocamento da frota e identifique gargalos logísticos fora das áreas previstas.
+
+Exportação de Dados
+O dashboard não é apenas visual. Na barra lateral ou ao final das tabelas, você encontrará a opção de Download CSV:
+
+O sistema consolida automaticamente as 6 bases de dados em um único arquivo limpo.
+
+Útil para auditorias externas ou integrações com outras ferramentas de BI (como Qlik Sense ou Power BI).
+
+🛠️ Como rodar o projeto
+Se você deseja executar este dashboard localmente:
+
+Prepare o ambiente:
+
+Bash
 python -m venv env
-source env/bin/activate
+source env/bin/activate  # No Windows: .\env\Scripts\activate
 pip install -r requirements.txt
-```
+Inicie a aplicação:
 
-## Estrutura de arquivos
-
-- `src/dashboard.py` : aplicação Streamlit
-- `requirements.txt` : dependências
-- `data/` : arquivos Excel (coordenadas + relatórios semanais)
-
-## Execução local
-
-```bash
-source env/bin/activate
+Bash
 streamlit run src/dashboard.py
-```
+Acesse no navegador:
+O Streamlit abrirá automaticamente o endereço http://localhost:8501.
 
-## Observações de path
+📁 Estrutura Técnica
+data/: Repositório das bases Excel (Fontes de dados).
 
-O `dashboard.py` original usa caminhos absolutos, por isso no deploy é recomendado atualizar para caminhos relativos ou provisionar os arquivos em `data/`.
+src/dashboard.py: O "cérebro" da aplicação e interface.
 
-Exemplo:
-```python
-from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parents[1]
-DF_PATH = BASE_DIR / 'data' / 'relatorio_semanal_V-1001.xlsx'
-```
+requirements.txt: Bibliotecas necessárias (Pandas, Streamlit, etc).
 
-## Deploy rápido (Streamlit Cloud)
-
-1. Faça push do código para GitHub.
-2. Acesse https://streamlit.io/cloud e conecte GitHub.
-3. Crie novo app apontando para `src/dashboard.py`.
-4. Streamlit fará o deploy automático.
-
-## Build alternativo (Heroku / VPS / Docker)
-
-### Docker (recomendado se não usar Streamlit Cloud)
-
-Crie `Dockerfile` (padrão):
-```Dockerfile
-FROM python:3.13-slim
-WORKDIR /app
-COPY . .
-RUN pip install -r requirements.txt
-EXPOSE 8501
-CMD ["streamlit", "run", "src/dashboard.py", "--server.address=0.0.0.0", "--server.port=8501"]
-```
-
-```bash
-docker build -t dashboard-ociosidade .
-docker run -d -p 8501:8501 dashboard-ociosidade
-```
-
-## Validar antes da entrega
-
-- `streamlit run src/dashboard.py` localmente
-- checar sidebar e 3 visões
-- checar mapa com polígono de cerca
-- baixar CSV de consolidados
-- conferir arquivo gerado: `data/consolidado.csv`
+Desenvolvido por João Gabriel Estudante de Ciência da Computação & Analista de BI
